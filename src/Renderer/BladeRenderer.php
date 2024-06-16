@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of the mimmi20/blade-renderer package.
+ *
+ * Copyright (c) 2024, Thomas Mueller <mimmi20@live.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 declare(strict_types = 1);
 
@@ -6,9 +14,10 @@ namespace Mimmi20\Mezzio\BladeRenderer\Renderer;
 
 use Jenssegers\Blade\Blade;
 use Laminas\View\Model\ModelInterface;
-use Laminas\View\Model\ModelInterface as Model;
 use Laminas\View\Renderer\PhpRenderer;
 use Traversable;
+
+use function iterator_to_array;
 
 final class BladeRenderer extends PhpRenderer
 {
@@ -21,10 +30,10 @@ final class BladeRenderer extends PhpRenderer
     /**
      * Processes a view script and returns the output.
      *
-     * @param  string|ModelInterface                                $nameOrModel The script/resource process, or a view model
+     * @param  ModelInterface|string                                $nameOrModel The script/resource process, or a view model
      * @param  array<string, mixed>|Traversable<string, mixed>|null $values      Values to use during rendering
      *
-     * @return string The script output.
+     * @return string the script output
      *
      * @throws void
      *
@@ -32,7 +41,7 @@ final class BladeRenderer extends PhpRenderer
      */
     public function render($nameOrModel, $values = null): string
     {
-        if ($nameOrModel instanceof Model) {
+        if ($nameOrModel instanceof ModelInterface) {
             $model       = $nameOrModel;
             $nameOrModel = $model->getTemplate();
 
@@ -42,8 +51,8 @@ final class BladeRenderer extends PhpRenderer
 
         if ($values instanceof Traversable) {
             $values = iterator_to_array($values);
-        } elseif ($values instanceof \ArrayAccess) {
-
+        } elseif ($values === null) {
+            $values = [];
         }
 
         return $this->blade->make($nameOrModel, $values)->render();

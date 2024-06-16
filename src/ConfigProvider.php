@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of the mimmi20/blade-renderer package.
+ *
+ * Copyright (c) 2024, Thomas Mueller <mimmi20@live.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 declare(strict_types = 1);
 
@@ -27,7 +35,7 @@ use Mimmi20\Mezzio\BladeRenderer\Strategy\BladeStrategyFactory;
 final class ConfigProvider
 {
     /**
-     * @return array{dependencies: array{aliases: array<string, class-string>, factories: array<string|class-string, class-string>}, view_manager: array{default_template_suffix: string, strategies: array<int, string|class-string>}, blade: array{cache_dir: string}}
+     * @return array{dependencies: array{aliases: array<string, class-string>, factories: array<class-string|string, class-string>}, view_manager: array{default_template_suffix: string, strategies: array<int, class-string|string>}, blade: array{cache_dir: string}}
      *
      * @throws void
      */
@@ -36,14 +44,12 @@ final class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'view_manager' => $this->getViewManagerConfig(),
-            'blade' => [
-                'cache_dir' => '',
-            ],
+            'blade' => ['cache_dir' => ''],
         ];
     }
 
     /**
-     * @return array{aliases: array<string, class-string>, factories: array<string|class-string, class-string>}
+     * @return array{aliases: array<string, class-string>, factories: array<class-string|string, class-string>}
      *
      * @throws void
      */
@@ -70,7 +76,7 @@ final class ConfigProvider
                 FileViewFinder::class => BladeFileViewFinderFactory::class,
                 /* php closure not used when using blade for rendering but could be used this way
                 'blade.engine_resolver_php_closure' => BladeEngineResolverPHPClosureFactory::class,
-                */
+                 */
                 'blade.engine_resolver_blade_closure' => BladeEngineResolverBladeClosureFactory::class,
                 FactoryInterface::class => ViewFactoryFactory::class,
                 Blade::class => BladeFactory::class,
@@ -79,7 +85,7 @@ final class ConfigProvider
     }
 
     /**
-     * @return array{default_template_suffix: string, strategies: array<int, string|class-string>}
+     * @return array{default_template_suffix: string, strategies: array<int, class-string|string>}
      *
      * @throws void
      */
@@ -88,7 +94,7 @@ final class ConfigProvider
         return [
             'default_template_suffix' => 'blade.php',
 
-            /**
+            /*
              * Register the view strategy with the view manager. This is required!
              */
             'strategies' => [

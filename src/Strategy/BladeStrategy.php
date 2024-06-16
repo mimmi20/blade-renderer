@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of the mimmi20/blade-renderer package.
+ *
+ * Copyright (c) 2024, Thomas Mueller <mimmi20@live.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 declare(strict_types = 1);
 
@@ -32,6 +40,8 @@ final class BladeStrategy implements ListenerAggregateInterface
      * Retrieve the composed renderer
      *
      * @throws void
+     *
+     * @api
      */
     public function getRenderer(): BladeRenderer
     {
@@ -43,9 +53,9 @@ final class BladeStrategy implements ListenerAggregateInterface
      *
      * @param  array<int|string, string> $contentPlaceholders
      *
-     * @return BladeStrategy
-     *
      * @throws void
+     *
+     * @api
      */
     public function setContentPlaceholders(array $contentPlaceholders): self
     {
@@ -60,6 +70,8 @@ final class BladeStrategy implements ListenerAggregateInterface
      * @return array<int|string, string>
      *
      * @throws void
+     *
+     * @api
      */
     public function getContentPlaceholders(): array
     {
@@ -95,13 +107,17 @@ final class BladeStrategy implements ListenerAggregateInterface
     /**
      * Select the BladeRenderer.
      *
+     * @param ViewEvent<object|string|null> $e
+     *
      * @throws void
+     *
+     * @api
      */
     public function selectRenderer(ViewEvent $e): BladeRenderer | null
     {
         $model = $e->getModel();
 
-        if (! $model instanceof Model\ViewModel) {
+        if (!$model instanceof Model\ViewModel) {
             // no ViewModel present; do nothing
             return null;
         }
@@ -125,7 +141,11 @@ final class BladeStrategy implements ListenerAggregateInterface
      * Populates the content of the response object from the view rendering
      * results.
      *
+     * @param ViewEvent<object|string|null> $e
+     *
      * @throws void
+     *
+     * @api
      */
     public function injectResponse(ViewEvent $e): void
     {
