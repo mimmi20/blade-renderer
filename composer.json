@@ -4,7 +4,12 @@
   "license": "MIT",
   "type": "library",
   "keywords": [
-    "laravel", "blade", "template", "view", "render", "laminas"
+    "laravel",
+    "blade",
+    "template",
+    "view",
+    "render",
+    "laminas"
   ],
   "authors": [
     {
@@ -24,9 +29,8 @@
   },
   "require": {
     "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-    "ext-mbstring": "*",
-    "illuminate/view": "^9.0.0 || ^10.0.0 || ^11.0.0",
     "illuminate/config": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "illuminate/view": "^9.0.0 || ^10.0.0 || ^11.0.0",
     "jenssegers/blade": "^2.0.1",
     "laminas/laminas-view": "^2.35.0"
   },
