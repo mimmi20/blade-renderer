@@ -1,8 +1,11 @@
 {
-  "name": "mimmi20/template",
-  "description": "Provides a GitHub repository template for a PHP library, using GitHub actions.",
+  "name": "mimmi20/blade-renderer",
+  "description": "Library to detect Browsers and Devices",
   "license": "MIT",
   "type": "library",
+  "keywords": [
+    "laravel", "blade", "template", "view", "render", "laminas"
+  ],
   "authors": [
     {
       "name": "Thomas Müller",
@@ -11,17 +14,21 @@
     },
     {
       "name": "Contributors",
-      "homepage": "https://github.com/mimmi20/template/graphs/contributors"
+      "homepage": "https://github.com/mimmi20/blade-renderer/graphs/contributors"
     }
   ],
-  "homepage": "https://github.com/mimmi20/template",
+  "homepage": "https://github.com/mimmi20/blade-renderer",
   "support": {
-    "issues": "https://github.com/mimmi20/template/issues",
-    "source": "https://github.com/mimmi20/template"
+    "issues": "https://github.com/mimmi20/blade-renderer/issues",
+    "source": "https://github.com/mimmi20/blade-renderer"
   },
   "require": {
     "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "illuminate/view": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "illuminate/config": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "jenssegers/blade": "^2.0.1",
+    "laminas/laminas-view": "^2.35.0"
   },
   "require-dev": {
     "ext-ctype": "*",
@@ -30,8 +37,12 @@
     "ext-tokenizer": "*",
     "ext-xml": "*",
     "ext-xmlwriter": "*",
-    "infection/infection": "^0.29.0",
-    "mimmi20/coding-standard": "^5.2.33",
+    "infection/infection": "^0.27.11 || ^0.28.0 || ^0.29.0",
+    "laminas/laminas-eventmanager": "^3.13",
+    "laminas/laminas-filter": "^2.35.2",
+    "laminas/laminas-modulemanager": "^2.15.0",
+    "laminas/laminas-servicemanager": "^3.22.1",
+    "mimmi20/coding-standard": "dev-updates",
     "nikic/php-parser": "^4.19.1 || ^5.0.2",
     "phpstan/extension-installer": "^1.4.1",
     "phpstan/phpstan": "^1.11.4",
@@ -39,6 +50,7 @@
     "phpstan/phpstan-phpunit": "^1.4.0",
     "phpunit/phpunit": "^10.5.20",
     "rector/rector": "^1.1.0",
+    "rector/type-perfect": "^0.1.4",
     "symplify/phpstan-rules": "^13.0.0",
     "tomasvotruba/cognitive-complexity": "^0.2.3",
     "tomasvotruba/type-coverage": "^0.3.1",
@@ -46,6 +58,16 @@
   },
   "minimum-stability": "stable",
   "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Mimmi20\\Mezzio\\BladeRenderer\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mimmi20\\Mezzio\\BladeRenderer\\": "tests/"
+    }
+  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
@@ -55,5 +77,11 @@
     "lock": false,
     "preferred-install": "dist",
     "sort-packages": true
+  },
+  "extra": {
+    "laminas": {
+      "component": "Mimmi20\\Mezzio\\BladeRenderer",
+      "config-provider": "Mimmi20\\Mezzio\\BladeRenderer\\ConfigProvider"
+    }
   }
 }

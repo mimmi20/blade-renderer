@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the mimmi20/template package.
+ * This file is part of the mimmi20/blade-renderer package.
  *
  * Copyright (c) 2020-2024, Thomas Mueller <mimmi20@live.de>
  *
