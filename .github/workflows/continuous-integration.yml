@@ -199,7 +199,7 @@ jobs:
           CC_TEST_REPORTER_ID: "${{ secrets.CODECLIMATE_API_KEY }}"
         with:
           coverageLocations: ".build/coverage/clover.xml:clover"
-          debug: false
+          debug: true
 
       - name: "Upload coverage to Coveralls"
         uses: "coverallsapp/github-action@v2"
