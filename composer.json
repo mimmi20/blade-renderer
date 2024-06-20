@@ -29,11 +29,11 @@
   },
   "require": {
     "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-    "illuminate/container": "^v10.48.13 || ^v11.11.0",
-    "illuminate/contracts": "^v10.48.13 || ^v11.11.0",
-    "illuminate/events": "^v10.48.13 || ^v11.11.0",
-    "illuminate/filesystem": "^v10.48.13 || ^v11.11.0",
-    "illuminate/view": "^v10.48.13 || ^v11.11.0",
+    "illuminate/container": "^10.48.13 || ^11.11.0",
+    "illuminate/contracts": "^10.48.13 || ^11.11.0",
+    "illuminate/events": "^10.48.13 || ^11.11.0",
+    "illuminate/filesystem": "^10.48.13 || ^11.11.0",
+    "illuminate/view": "^10.48.13 || ^11.11.0",
     "jenssegers/blade": "^2.0.1",
     "laminas/laminas-view": "^2.35.0",
     "psr/container": "^1.1.2 || ^2.0.2"

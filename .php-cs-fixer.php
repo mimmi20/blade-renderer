@@ -24,7 +24,10 @@ $finder = PhpCsFixer\Finder::create()
     ->name('*.php')
     ->notName('*.blade.php')
     ->in(__DIR__ . '/src')
-    ->in(__DIR__ . '/tests')
+    ->in(__DIR__ . '/tests/Components')
+    ->in(__DIR__ . '/tests/Renderer')
+    ->append([__DIR__ . '/tests/ConfigProviderTest.php'])
+    ->append([__DIR__ . '/tests/ModuleTest.php'])
     ->append([__DIR__ . '/rector.php'])
     ->append([__FILE__]);
 
