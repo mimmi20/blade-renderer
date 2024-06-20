@@ -12,6 +12,8 @@ declare(strict_types = 1);
 
 namespace Mimmi20\Mezzio\BladeRenderer\Renderer;
 
+use Closure;
+use Illuminate\View\Compilers\BladeCompiler;
 use Jenssegers\Blade\Blade;
 use Laminas\View\Model\ModelInterface;
 use Laminas\View\Renderer\PhpRenderer;
@@ -55,6 +57,74 @@ final class BladeRenderer extends PhpRenderer
             $values = [];
         }
 
-        return $this->blade->make($nameOrModel, $values)->render();
+        return $this->blade->render($nameOrModel, $values);
+    }
+
+    /**
+     * Register a view composer event.
+     *
+     * @param array<string>|string $views
+     *
+     * @return array<mixed>
+     *
+     * @throws void
+     *
+     * @api
+     */
+    public function composer(array | string $views, Closure | string $callback): array
+    {
+        return $this->blade->composer($views, $callback);
+    }
+
+    /**
+     * Add a piece of shared data to the environment.
+     *
+     * @param array<string, mixed>|string $key
+     *
+     * @throws void
+     *
+     * @api
+     */
+    public function share(array | string $key, mixed $value = null): mixed
+    {
+        return $this->blade->share($key, $value);
+    }
+
+    /**
+     * Determine if a given view exists.
+     *
+     * @throws void
+     *
+     * @api
+     */
+    public function exists(string $view): bool
+    {
+        return $this->blade->exists($view);
+    }
+
+    /**
+     * Register a view creator event.
+     *
+     * @param array<string>|string $views
+     *
+     * @return array<mixed>
+     *
+     * @throws void
+     *
+     * @api
+     */
+    public function creator(array | string $views, Closure | string $callback): array
+    {
+        return $this->blade->creator($views, $callback);
+    }
+
+    /**
+     * @throws void
+     *
+     * @api
+     */
+    public function compiler(): BladeCompiler
+    {
+        return $this->blade->compiler();
     }
 }

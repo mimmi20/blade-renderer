@@ -55,6 +55,7 @@ jobs:
       skip-phpstan: false
       skip-rector: false
       skip-phpmd: false
+      phpcs-options: "--ignore=*/tests/views/*,*/tests/cache/*"
 
   tests:
     name: "UnitTests with PHPUnit"

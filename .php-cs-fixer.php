@@ -22,6 +22,7 @@ $header = <<<'EOF'
 $finder = PhpCsFixer\Finder::create()
     ->files()
     ->name('*.php')
+    ->notName('*.blade.php')
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests')
     ->append([__DIR__ . '/rector.php'])

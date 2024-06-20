@@ -19,6 +19,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\FileViewFinder;
 use Jenssegers\Blade\Blade;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeCompilerFactory;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeDispatcherFactory;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeFactory;
@@ -26,6 +27,7 @@ use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeFilesystemFactory;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeFileViewFinderFactory;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRendererFactory;
+use Mimmi20\Mezzio\BladeRenderer\Renderer\Container;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\ViewFactoryFactory;
 use Mimmi20\Mezzio\BladeRenderer\Resolver\BladeEngineResolverBladeClosureFactory;
 use Mimmi20\Mezzio\BladeRenderer\Resolver\BladeEngineResolverFactory;
@@ -80,6 +82,7 @@ final class ConfigProvider
                 'blade.engine_resolver_blade_closure' => BladeEngineResolverBladeClosureFactory::class,
                 FactoryInterface::class => ViewFactoryFactory::class,
                 Blade::class => BladeFactory::class,
+                Container::class => InvokableFactory::class,
             ],
         ];
     }

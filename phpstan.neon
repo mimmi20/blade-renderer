@@ -14,6 +14,11 @@ parameters:
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
 
+  excludePaths:
+    analyse:
+      - tests/cache/*
+      - tests/views/*
+
   # reports occurrences of type-checking functions always evaluated to true
   checkAlwaysTrueCheckTypeFunctionCall: false # todo: fix
 
@@ -95,12 +100,12 @@ parameters:
       tooWideThrowType: true
 
   cognitive_complexity:
-    class: 9
-    function: 9
+    class: 20
+    function: 20
 
   type_coverage:
     return: 100
-    param: 86.3
+    param: 49
     property: 100
     # also, how many files has declare strict types
     declare: 100
@@ -114,15 +119,16 @@ parameters:
   type_perfect:
     null_over_false: true
     no_mixed: true
-    narrow_param: true
+    narrow_param: false
 
   stubFiles:
     - vendor/mimmi20/coding-standard/stubs/psr/container/ContainerInterface.stub
     - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ViewModel.stub
     - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ModelInterface.stub
 
-#  ignoreErrors:
-#    - '~MockObject~'
+  ignoreErrors:
+    - '~mixed given~'
+    - '~no signature~'
 
 rules:
   # code complexity

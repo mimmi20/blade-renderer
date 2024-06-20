@@ -20,7 +20,11 @@ final class Container extends BaseContainer
     /** @var array<int, Closure> */
     protected array $terminatingCallbacks = [];
 
-    /** @throws void */
+    /**
+     * @throws void
+     *
+     * @api
+     */
     public function terminating(Closure $callback): self
     {
         $this->terminatingCallbacks[] = $callback;
@@ -28,11 +32,25 @@ final class Container extends BaseContainer
         return $this;
     }
 
-    /** @throws void */
+    /**
+     * @throws void
+     *
+     * @api
+     */
     public function terminate(): void
     {
         foreach ($this->terminatingCallbacks as $terminatingCallback) {
             $terminatingCallback();
         }
+    }
+
+    /**
+     * @throws void
+     *
+     * @api
+     */
+    public function getNamespace(): string
+    {
+        return '';
     }
 }

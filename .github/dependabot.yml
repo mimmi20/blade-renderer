@@ -60,6 +60,15 @@ updates:
       - dependency-name: "illuminate/contracts"
       - dependency-name: "illuminate/events"
       - dependency-name: "illuminate/filesystem"
+      - dependency-name: "endorphin-studio/browser-detector-tests"
+      - dependency-name: "laminas/laminas-diactoros"
+      - dependency-name: "symfony/console"
+      - dependency-name: "symfony/finder"
+      - dependency-name: "symfony/yaml"
+      - dependency-name: "symfony/http-foundation"
+      - dependency-name: "psr/log"
+      - dependency-name: "browscap/browscap"
+      - dependency-name: "symfony/filesystem"
 
     # Disable rebasing for all pull requests
     rebase-strategy: "disabled"
@@ -116,6 +125,15 @@ updates:
   #    - dependency-name: "illuminate/contracts"
   #    - dependency-name: "illuminate/events"
   #    - dependency-name: "illuminate/filesystem"
+  #    - dependency-name: "endorphin-studio/browser-detector-tests"
+  #    - dependency-name: "laminas/laminas-diactoros"
+  #    - dependency-name: "symfony/console"
+  #    - dependency-name: "symfony/finder"
+  #    - dependency-name: "symfony/yaml"
+  #    - dependency-name: "symfony/http-foundation"
+  #    - dependency-name: "psr/log"
+  #    - dependency-name: "browscap/browscap"
+  #    - dependency-name: "symfony/filesystem"
   #
   #  # Disable rebasing for all pull requests
   #  rebase-strategy: "disabled"
