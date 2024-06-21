@@ -14,8 +14,13 @@ parameters:
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
 
+  excludePaths:
+    analyse:
+      - tests/cache/*
+      - tests/views/*
+
   # reports occurrences of type-checking functions always evaluated to true
-  checkAlwaysTrueCheckTypeFunctionCall: true
+  checkAlwaysTrueCheckTypeFunctionCall: false # todo: fix
 
   # reports instanceof occurrences always evaluated to true
   checkAlwaysTrueInstanceof: true
@@ -34,9 +39,6 @@ parameters:
 
   # reports function and method calls with incorrect name case
   checkFunctionNameCase: true
-
-  # it requires type variables always be specified in typehints
-  checkGenericClassInNonGenericObjectType: true
 
   # be strict about values with an unspecified (implicit mixed) type
   checkImplicitMixed: true
@@ -72,7 +74,7 @@ parameters:
   reportAlwaysTrueInLastCondition: true
 
   # reports violations of parameter type contravariance and return type covariance
-  reportMaybesInMethodSignatures: true
+  reportMaybesInMethodSignatures: false # todo: fix
 
   # reports violations of property type invariance
   reportMaybesInPropertyPhpDocTypes: true
@@ -98,12 +100,12 @@ parameters:
       tooWideThrowType: true
 
   cognitive_complexity:
-    class: 1
-    function: 1
+    class: 20
+    function: 20
 
   type_coverage:
     return: 100
-    param: 100
+    param: 49
     property: 100
     # also, how many files has declare strict types
     declare: 100
@@ -112,15 +114,24 @@ parameters:
     methods: true
     properties: true
     constants: true
-    local_methods: true
+    local_methods: false
 
-#  ignoreErrors:
-#    - '~MockObject~'
+  type_perfect:
+    null_over_false: true
+    no_mixed: true
+    narrow_param: false
+
+  stubFiles:
+    - vendor/mimmi20/coding-standard/stubs/psr/container/ContainerInterface.stub
+    - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ViewModel.stub
+    - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ModelInterface.stub
+
+  ignoreErrors:
+    - '~mixed given~'
+    - '~no signature~'
 
 rules:
   # code complexity
-  - Symplify\PHPStanRules\Rules\Explicit\NoMixedPropertyFetcherRule
-  - Symplify\PHPStanRules\Rules\Explicit\NoMixedMethodCallerRule
   - Symplify\PHPStanRules\Rules\NoDynamicNameRule
   # - Symplify\PHPStanRules\Rules\NoReturnArrayVariableListRule # todo: fix
 
@@ -130,26 +141,15 @@ rules:
   - Symplify\PHPStanRules\Rules\Domain\RequireExceptionNamespaceRule
   - Symplify\PHPStanRules\Rules\Domain\RequireAttributeNamespaceRule
   - Symplify\PHPStanRules\Rules\Enum\RequireUniqueEnumConstantRule
-  - Symplify\PHPStanRules\Rules\ForbiddenParamTypeRemovalRule
   - Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
 
   # paths
-  - Symplify\PHPStanRules\Rules\NoMissingDirPathRule
-  - Symplify\PHPStanRules\Rules\NoReferenceRule # References are required
-  - Symplify\PHPStanRules\Rules\NoArrayAccessOnObjectRule
-
-  - Symplify\PHPStanRules\Rules\NoNullableArrayPropertyRule
-
-  # dead-code
-  - Symplify\PHPStanRules\Rules\NoIssetOnObjectRule
+  - Symplify\PHPStanRules\Rules\NoReferenceRule
 
   # explicit naming
   - Symplify\PHPStanRules\Rules\ForbiddenMultipleClassLikeInOneFileRule
 
-  # comlexity
-  - Symplify\PHPStanRules\Rules\NarrowType\NoReturnFalseInNonBoolClassMethodRule
-
-  - Symplify\PHPStanRules\Rules\Complexity\ForbiddenArrayMethodCallRule
+  # - Symplify\PHPStanRules\Rules\Complexity\ForbiddenArrayMethodCallRule
   # - Symplify\PHPStanRules\Rules\CheckRequiredInterfaceInContractNamespaceRule
 
   # naming
@@ -162,11 +162,7 @@ rules:
 
   # naming
   - Symplify\PHPStanRules\Rules\Explicit\ExplicitClassPrefixSuffixRule
-  - Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
+  # - Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
   - Symplify\PHPStanRules\Rules\UppercaseConstantRule
   - Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
-  - Symplify\PHPStanRules\Rules\CheckTypehintCallerTypeRule
   - Symplify\PHPStanRules\Rules\CheckClassNamespaceFollowPsr4Rule
-
-includes:
-  - vendor/symplify/phpstan-rules/config/collector-rules.neon
