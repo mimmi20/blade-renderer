@@ -127,7 +127,7 @@ parameters:
     - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ModelInterface.stub
 
   ignoreErrors:
-    - '~mixed given~'
+#    - '~mixed given~'
     - '~no signature~'
 
 rules:
