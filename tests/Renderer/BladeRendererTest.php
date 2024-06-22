@@ -19,6 +19,7 @@ use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\View;
 use Jenssegers\Blade\Blade;
+use Laminas\View\Model\ViewModel;
 use LogicException;
 use Mimmi20\Mezzio\BladeRenderer\Components\MediaImage;
 use PHPUnit\Framework\Exception;
@@ -109,6 +110,32 @@ final class BladeRendererTest extends TestCase
         });
 
         $output = $this->bladeRenderer->render('variables', ['name' => 'Jane Doe']);
+        self::assertSame('hello John Doe and Jane Doe', trim($output));
+    }
+
+    /** @throws Exception */
+    public function testComposer2(): void
+    {
+        $this->bladeRenderer->composer('variables', static function (View $view): void {
+            $view->with('name', 'John Doe and ' . $view->offsetGet('name'));
+        });
+
+        $output = $this->bladeRenderer->render('variables', new \ArrayObject(['name' => 'Jane Doe']));
+        self::assertSame('hello John Doe and Jane Doe', trim($output));
+    }
+
+    /** @throws Exception */
+    public function testComposer3(): void
+    {
+        $this->bladeRenderer->composer('variables', static function (View $view): void {
+            $view->with('name', 'John Doe and ' . $view->offsetGet('name'));
+        });
+
+        $model = new ViewModel();
+        $model->setTemplate('variables');
+        $model->setVariables(['name' => 'Jane Doe']);
+
+        $output = $this->bladeRenderer->render($model);
         self::assertSame('hello John Doe and Jane Doe', trim($output));
     }
 
