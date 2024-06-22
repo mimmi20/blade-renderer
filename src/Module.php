@@ -13,9 +13,8 @@ declare(strict_types = 1);
 namespace Mimmi20\Mezzio\BladeRenderer;
 
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
-use Laminas\ModuleManager\Feature\ServiceProviderInterface;
 
-final class Module implements ConfigProviderInterface, ServiceProviderInterface
+final class Module implements ConfigProviderInterface
 {
     /**
      * @return array{dependencies: array{aliases: array<string, class-string>, factories: array<class-string|string, class-string>}, blade: array{cache_dir: string}}
@@ -27,17 +26,5 @@ final class Module implements ConfigProviderInterface, ServiceProviderInterface
         $configProvider = new ConfigProvider();
 
         return $configProvider();
-    }
-
-    /**
-     * @return array{aliases: array<string, class-string>, factories: array<class-string|string, class-string>}
-     *
-     * @throws void
-     */
-    public function getServiceConfig(): array
-    {
-        $configProvider = new ConfigProvider();
-
-        return $configProvider->getDependencies();
     }
 }
