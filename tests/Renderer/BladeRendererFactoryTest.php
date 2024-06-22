@@ -10,50 +10,52 @@
 
 declare(strict_types = 1);
 
-namespace Mimmi20\Mezzio\BladeRenderer\Strategy;
+namespace Mimmi20\Mezzio\BladeRenderer\Renderer;
 
 use Jenssegers\Blade\Blade;
-use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use ReflectionException;
+use ReflectionProperty;
 
 use function assert;
 
-final class BladeStrategyFactoryTest extends TestCase
+final class BladeRendererFactoryTest extends TestCase
 {
-    private BladeStrategyFactory $factory;
+    private BladeRendererFactory $factory;
 
     /** @throws void */
     protected function setUp(): void
     {
-        $this->factory = new BladeStrategyFactory();
+        $this->factory = new BladeRendererFactory();
     }
 
     /**
      * @throws Exception
      * @throws ContainerExceptionInterface
+     * @throws ReflectionException
      */
     public function testInvocation(): void
     {
         $blade = new Blade('tests/views', 'tests/cache');
-
-        $renderer = new BladeRenderer($blade);
 
         $container = $this->getMockBuilder(ContainerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
         $container->expects(self::once())
             ->method('get')
-            ->with(BladeRenderer::class)
-            ->willReturn($renderer);
+            ->with(Blade::class)
+            ->willReturn($blade);
 
         assert($container instanceof ContainerInterface);
-        $strategy = ($this->factory)($container);
+        $renderer = ($this->factory)($container);
 
-        self::assertInstanceOf(BladeStrategy::class, $strategy);
+        self::assertInstanceOf(BladeRenderer::class, $renderer);
 
-        self::assertSame($renderer, $strategy->getRenderer());
+        $b = new ReflectionProperty($renderer, 'blade');
+
+        self::assertSame($blade, $b->getValue($renderer));
     }
 }
