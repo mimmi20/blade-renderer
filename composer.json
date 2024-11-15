@@ -28,7 +28,7 @@
     "source": "https://github.com/mimmi20/blade-renderer"
   },
   "require": {
-    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
     "illuminate/container": "^10.48.13 || ^11.11.0",
     "illuminate/view": "^10.48.13 || ^11.11.0",
     "jenssegers/blade": "^2.0.1",
