@@ -16,6 +16,7 @@ namespace Mimmi20\Mezzio\BladeRenderer;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\Container;
 use Mimmi20\Mezzio\BladeRenderer\Strategy\BladeStrategy;
+use Override;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -24,6 +25,7 @@ final class ConfigProviderTest extends TestCase
     private ConfigProvider $provider;
 
     /** @throws void */
+    #[Override]
     protected function setUp(): void
     {
         $this->provider = new ConfigProvider();

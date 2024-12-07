@@ -28,13 +28,14 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/src',
         __DIR__ . '/tests/Components',
         __DIR__ . '/tests/Renderer',
+        __DIR__ . '/tests/Strategy',
         __DIR__ . '/tests/ConfigProviderTest.php',
         __DIR__ . '/tests/ModuleTest.php',
     ]);
 
     $rectorConfig->sets([
         SetList::DEAD_CODE,
-        LevelSetList::UP_TO_PHP_81,
+        LevelSetList::UP_TO_PHP_83,
         PHPUnitSetList::PHPUNIT_100,
     ]);
 

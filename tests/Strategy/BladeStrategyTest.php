@@ -22,6 +22,7 @@ use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 use Laminas\View\ViewEvent;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
+use Override;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,7 @@ final class BladeStrategyTest extends TestCase
     private BladeRenderer $renderer;
 
     /** @throws void */
+    #[Override]
     protected function setUp(): void
     {
         $blade = new Blade('tests/views', 'tests/cache');

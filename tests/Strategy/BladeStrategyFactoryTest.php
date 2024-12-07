@@ -15,6 +15,7 @@ namespace Mimmi20\Mezzio\BladeRenderer\Strategy;
 
 use Jenssegers\Blade\Blade;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
+use Override;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -27,6 +28,7 @@ final class BladeStrategyFactoryTest extends TestCase
     private BladeStrategyFactory $factory;
 
     /** @throws void */
+    #[Override]
     protected function setUp(): void
     {
         $this->factory = new BladeStrategyFactory();

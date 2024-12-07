@@ -1,7 +1,7 @@
 parameters:
   level: max
 
-  phpVersion: 80100 # PHP 8.1
+  phpVersion: 80300 # PHP 8.3
 
   parallel:
     maximumNumberOfProcesses: 1
@@ -109,7 +109,7 @@ parameters:
     return_type: 100
     param_type: 49
     property_type: 100
-    constant_type: 0
+    constant_type: 100
     # also, how many files has declare strict types
     declare: 100
 
@@ -125,9 +125,15 @@ parameters:
     narrow_param: false
 
   stubFiles:
-    - vendor/mimmi20/coding-standard/stubs/psr/container/ContainerInterface.stub
-    - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ViewModel.stub
-    - vendor/mimmi20/coding-standard/stubs/laminas/view/model/ModelInterface.stub
+    - stubs/psr/container/ContainerExceptionInterface.stub
+    - stubs/psr/container/NotFoundExceptionInterface.stub
+    - stubs/psr/container/ContainerInterface.stub
+    - stubs/laminas/view/model/ClearableModelInterface.stub
+    - stubs/laminas/view/model/RetrievableChildrenInterface.stub
+    - stubs/laminas/view/model/ExceptionInterface.stub
+    - stubs/laminas/view/model/InvalidArgumentException.stub
+    - stubs/laminas/view/model/ViewModel.stub
+    - stubs/laminas/view/model/ModelInterface.stub
 
   ignoreErrors:
 #    - '~mixed given~'

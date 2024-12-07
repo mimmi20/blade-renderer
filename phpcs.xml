@@ -5,6 +5,7 @@
     <arg name="report" value="full"/>
     <arg value="wps"/>
     <arg name="encoding" value="utf-8"/>
+    <arg name="extensions" value="php,stub" />
 
     <!-- Check up to 8 files simultaneously. -->
     <arg name="parallel" value="8"/>
@@ -18,6 +19,7 @@
     <!-- Paths to check -->
     <file>src</file>
     <file>tests</file>
+    <file>stubs</file>
     <file>.php-cs-fixer.php</file>
     <file>rector.php</file>
 </ruleset>

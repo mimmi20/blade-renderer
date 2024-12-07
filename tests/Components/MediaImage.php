@@ -15,6 +15,7 @@ namespace Mimmi20\Mezzio\BladeRenderer\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Override;
 
 // Very rough example with some wordpress stuff
 final class MediaImage extends Component
@@ -40,6 +41,7 @@ final class MediaImage extends Component
     }
 
     /** @throws void */
+    #[Override]
     public function render(): View
     {
         return $this->view('components.media-image');

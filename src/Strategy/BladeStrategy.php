@@ -19,6 +19,7 @@ use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\View\Model;
 use Laminas\View\ViewEvent;
 use Mimmi20\Mezzio\BladeRenderer\Renderer\BladeRenderer;
+use Override;
 
 final class BladeStrategy implements ListenerAggregateInterface
 {
@@ -91,6 +92,7 @@ final class BladeStrategy implements ListenerAggregateInterface
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
+    #[Override]
     public function attach(EventManagerInterface $events, $priority = 1): void
     {
         $this->listeners[] = $events->attach(
