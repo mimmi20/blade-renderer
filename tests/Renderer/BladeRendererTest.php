@@ -25,6 +25,7 @@ use Laminas\View\Exception\InvalidArgumentException;
 use Laminas\View\Model\ViewModel;
 use LogicException;
 use Mimmi20\Mezzio\BladeRenderer\Components\MediaImage;
+use Override;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use TypeError;
@@ -40,6 +41,7 @@ final class BladeRendererTest extends TestCase
      * @throws TypeError
      * @throws LogicException
      */
+    #[Override]
     protected function setUp(): void
     {
         $app = Container::getInstance();

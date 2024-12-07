@@ -11,10 +11,12 @@
 
 declare(strict_types = 1);
 
-$header = <<<'EOF'
+$year = date('Y');
+
+$header = <<<EOF
     This file is part of the mimmi20/blade-renderer package.
 
-    Copyright (c) 2024, Thomas Mueller <mimmi20@live.de>
+    Copyright (c) {$year}, Thomas Mueller <mimmi20@live.de>
 
     For the full copyright and license information, please view the LICENSE
     file that was distributed with this source code.
@@ -23,11 +25,14 @@ $header = <<<'EOF'
 $finder = PhpCsFixer\Finder::create()
     ->files()
     ->name('*.php')
+    ->name('*.stub')
     ->notName('*.blade.php')
+    ->notName('ViewModel.stub')
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests/Components')
     ->in(__DIR__ . '/tests/Renderer')
     ->in(__DIR__ . '/tests/Strategy')
+    ->in(__DIR__ . '/stubs')
     ->append([__DIR__ . '/tests/ConfigProviderTest.php'])
     ->append([__DIR__ . '/tests/ModuleTest.php'])
     ->append([__DIR__ . '/rector.php'])

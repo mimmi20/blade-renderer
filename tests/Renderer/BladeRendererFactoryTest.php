@@ -14,6 +14,7 @@ declare(strict_types = 1);
 namespace Mimmi20\Mezzio\BladeRenderer\Renderer;
 
 use Jenssegers\Blade\Blade;
+use Override;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
@@ -28,6 +29,7 @@ final class BladeRendererFactoryTest extends TestCase
     private BladeRendererFactory $factory;
 
     /** @throws void */
+    #[Override]
     protected function setUp(): void
     {
         $this->factory = new BladeRendererFactory();

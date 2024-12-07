@@ -18,6 +18,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Jenssegers\Blade\Blade;
 use Laminas\View\Model\ModelInterface;
 use Laminas\View\Renderer\PhpRenderer;
+use Override;
 use Traversable;
 
 use function iterator_to_array;
@@ -42,6 +43,7 @@ final class BladeRenderer extends PhpRenderer
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
+    #[Override]
     public function render($nameOrModel, $values = null): string
     {
         if ($nameOrModel instanceof ModelInterface) {
