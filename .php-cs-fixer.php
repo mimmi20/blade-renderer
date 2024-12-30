@@ -36,6 +36,7 @@ $finder = PhpCsFixer\Finder::create()
     ->append([__DIR__ . '/tests/ConfigProviderTest.php'])
     ->append([__DIR__ . '/tests/ModuleTest.php'])
     ->append([__DIR__ . '/rector.php'])
+    ->append([__DIR__ . '/composer-dependency-analyser.php'])
     ->append([__FILE__]);
 
 $rules = require 'vendor/mimmi20/coding-standard/src/php-cs-fixer.config.php';
