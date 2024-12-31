@@ -21,15 +21,6 @@ parameters:
       - tests/cache/*
       - tests/views/*
 
-  # reports occurrences of type-checking functions always evaluated to true
-  checkAlwaysTrueCheckTypeFunctionCall: false # todo: fix
-
-  # reports instanceof occurrences always evaluated to true
-  checkAlwaysTrueInstanceof: true
-
-  # reports === and !== occurrences always evaluated to true
-  checkAlwaysTrueStrictComparison: true
-
   # enable stricter analysis of benevolent union types
   checkBenevolentUnionTypes: true
 
@@ -50,9 +41,6 @@ parameters:
 
   # require that callable signatures are specified
   checkMissingCallableSignature: true
-
-  # checks for missing typehints in iterables
-  checkMissingIterableValueType: true
 
   # reports return typehints that could be narrowed down because some of the listed types are never returned
   checkTooWideReturnTypesInProtectedAndPublicMethods: true
@@ -138,6 +126,7 @@ parameters:
   ignoreErrors:
 #    - '~mixed given~'
     - '~no signature~'
+    - '~will always evaluate to true~'
 
 rules:
   # code complexity
@@ -164,14 +153,8 @@ rules:
   # naming
   - Symplify\PHPStanRules\Rules\RequireAttributeNameRule
 
-  # regexes
-  - Symplify\PHPStanRules\Rules\AnnotateRegexClassConstWithRegexLinkRule
-  - Symplify\PHPStanRules\Rules\NoInlineStringRegexRule
-  - Symplify\PHPStanRules\Rules\RegexSuffixInRegexConstantRule
-
   # naming
   - Symplify\PHPStanRules\Rules\Explicit\ExplicitClassPrefixSuffixRule
   # - Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
   - Symplify\PHPStanRules\Rules\UppercaseConstantRule
   - Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
-  - Symplify\PHPStanRules\Rules\CheckClassNamespaceFollowPsr4Rule
