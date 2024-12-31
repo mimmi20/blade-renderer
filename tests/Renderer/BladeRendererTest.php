@@ -168,7 +168,7 @@ final class BladeRendererTest extends TestCase
             $offset = $view->offsetGet('name');
             assert(is_string($offset));
 
-            $view->with('name', 'John Doe and ' . $offset);
+            $view->with('name', 'Jane Doe and ' . $offset);
         });
 
         $output = $this->bladeRenderer->render('variables');
