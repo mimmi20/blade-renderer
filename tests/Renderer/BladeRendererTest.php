@@ -30,7 +30,9 @@ use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use TypeError;
 
+use function assert;
 use function file_get_contents;
+use function is_string;
 use function trim;
 
 final class BladeRendererTest extends TestCase
@@ -111,7 +113,10 @@ final class BladeRendererTest extends TestCase
     public function testComposer(): void
     {
         $this->bladeRenderer->composer('variables', static function (View $view): void {
-            $view->with('name', 'John Doe and ' . $view->offsetGet('name'));
+            $offset = $view->offsetGet('name');
+            assert(is_string($offset));
+
+            $view->with('name', 'John Doe and ' . $offset);
         });
 
         $output = $this->bladeRenderer->render('variables', ['name' => 'Jane Doe']);
@@ -122,7 +127,10 @@ final class BladeRendererTest extends TestCase
     public function testComposer2(): void
     {
         $this->bladeRenderer->composer('variables', static function (View $view): void {
-            $view->with('name', 'John Doe and ' . $view->offsetGet('name'));
+            $offset = $view->offsetGet('name');
+            assert(is_string($offset));
+
+            $view->with('name', 'John Doe and ' . $offset);
         });
 
         $output = $this->bladeRenderer->render('variables', new ArrayObject(['name' => 'Jane Doe']));
@@ -136,7 +144,10 @@ final class BladeRendererTest extends TestCase
     public function testComposer3(): void
     {
         $this->bladeRenderer->composer('variables', static function (View $view): void {
-            $view->with('name', 'John Doe and ' . $view->offsetGet('name'));
+            $offset = $view->offsetGet('name');
+            assert(is_string($offset));
+
+            $view->with('name', 'John Doe and ' . $offset);
         });
 
         $model = new ViewModel();
@@ -154,7 +165,10 @@ final class BladeRendererTest extends TestCase
             $view->with('name', 'John Doe');
         });
         $this->bladeRenderer->composer('variables', static function (View $view): void {
-            $view->with('name', 'Jane Doe and ' . $view->offsetGet('name'));
+            $offset = $view->offsetGet('name');
+            assert(is_string($offset));
+
+            $view->with('name', 'Jane Doe and ' . $offset);
         });
 
         $output = $this->bladeRenderer->render('variables');
