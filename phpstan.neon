@@ -124,7 +124,6 @@ parameters:
     - stubs/laminas/view/model/ModelInterface.stub
 
   ignoreErrors:
-#    - '~mixed given~'
     - '~no signature~'
     - '~will always evaluate to true~'
 
