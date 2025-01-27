@@ -42,7 +42,7 @@
     "ext-tokenizer": "*",
     "ext-xml": "*",
     "ext-xmlwriter": "*",
-    "illuminate/contracts": "^11.39.1",
+    "illuminate/contracts": "^11.40.0",
     "infection/infection": "^0.29.10",
     "laminas/laminas-eventmanager": "^3.14",
     "laminas/laminas-modulemanager": "^2.17.0",
